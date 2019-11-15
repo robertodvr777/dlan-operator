@@ -6,6 +6,8 @@ import sys
 
 app = Flask(__name__) #create the Flask app
 
+#curl -d '{"nft_a":"200", "signature":"0x0000", "address":"0x7267b857B18080ECe4D006B55a8Ec2D1ccC37581"}' -H "Content-Type: application/json" -X POST http://localhost:5000/transaction
+
 @app.route('/transaction', methods = ['POST'])
 def transaction():
     #db = dataset.connect('sqlite:///database/users.db')
