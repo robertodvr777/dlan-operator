@@ -13,16 +13,16 @@ def transaction():
     #db = dataset.connect('sqlite:///database/users.db')
     db = dataset.connect('mysql://root:@localhost/radius')
     table = db['webserver_account']
-    print (table)
-    sys.exit(0)
     content = request.get_json()
     user = content['address']
-    new_balance = content['bal']
+    new_balance = content['nft_a']
     signature = content['signature']
-    balance_update = dict(address=user, bal=new_balance)
+    balance_update = dict(address=user, nft_a=new_balance)
     table.update(balance_update, ['address'])
     signature_update = dict(address=user, signature=signature)
     table.update(signature_update, ['address'])
+    return 'Update Success'
+    sys.exit(0)
     ''' STILL NEED TO IMPLEMENT VERIFICATION
     nft_value = request.args.get('a')
     hashed_message = Web3.keccak(int(new_balance))
@@ -50,8 +50,8 @@ def balance():
     print (address)
     user = table.find_one(address=address)
     print (user)
-    #return '''<h1>User Balance: {}</h1>'''.format(user['bal'])
-    return str(user['bal'])
+    #return '''<h1>User Balance: {}</h1>'''.format(user['nft_a'])
+    return str(user['nft_a'])
 
 
 if __name__=="__main__":
